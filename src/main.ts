@@ -13,6 +13,7 @@ import { AllConfigType } from './config/config.type';
 import { WinstonModule } from 'nest-winston';
 import { format, transports } from 'winston';
 import 'winston-daily-rotate-file';
+import { AppExceptionFilter } from './utils/exception/app-exception/app-exception-filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -61,6 +62,7 @@ async function bootstrap() {
     type: VersioningType.URI,
   });
   app.useGlobalPipes(new ValidationPipe(validationOptions));
+  app.useGlobalFilters(new AppExceptionFilter());
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   const options = new DocumentBuilder()

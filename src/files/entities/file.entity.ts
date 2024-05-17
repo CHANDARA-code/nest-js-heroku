@@ -4,10 +4,9 @@ import {
   PrimaryGeneratedColumn,
   AfterLoad,
   AfterInsert,
-  IsNull,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { Allow, IsBoolean, isBoolean } from 'class-validator';
+import { Allow, IsBoolean } from 'class-validator';
 import { EntityHelper } from 'src/utils/entity-helper';
 import appConfig from '../../config/app.config';
 import { AppConfig } from 'src/config/config.type';
