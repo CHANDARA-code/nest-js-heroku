@@ -18,6 +18,16 @@ services:
       - ${MAIL_CLIENT_PORT}:1080
       - ${MAIL_PORT}:1025
 
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+  #     PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+  #     POSTGRES_DB: ${DATABASE_NAME}
+  #   ports:
+  #     - 8080:80
+
   adminer:
     image: adminer
     restart: always

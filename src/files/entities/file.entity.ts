@@ -4,9 +4,10 @@ import {
   PrimaryGeneratedColumn,
   AfterLoad,
   AfterInsert,
+  IsNull,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { Allow } from 'class-validator';
+import { Allow, IsBoolean, isBoolean } from 'class-validator';
 import { EntityHelper } from 'src/utils/entity-helper';
 import appConfig from '../../config/app.config';
 import { AppConfig } from 'src/config/config.type';
@@ -28,4 +29,8 @@ export class FileEntity extends EntityHelper {
       this.path = (appConfig() as AppConfig).backendDomain + this.path;
     }
   }
+
+  @Column({ nullable: true, default: true })
+  @IsBoolean()
+  isRequireToken?: boolean;
 }
