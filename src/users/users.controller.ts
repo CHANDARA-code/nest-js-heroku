@@ -20,16 +20,17 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/roles/roles.decorator';
 import { RoleEnum } from 'src/roles/roles.enum';
-import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from 'src/roles/roles.guard';
 import { User } from './entities/user.entity';
 import { NullableType } from '../utils/types/nullable.type';
 import { standardPagination } from '../utils/standard-pagination';
 import { StandardPaginationResultType } from '../utils/types/standard-pagination-result.type';
+import { AppException } from 'src/utils/exception/app-exception/app-exception';
+import { AppJwtAuthGuard } from 'src/utils/guard/auth/jwt-auth-guard';
 
 @ApiBearerAuth()
 @Roles(RoleEnum.admin)
-@UseGuards(AuthGuard('jwt'), RolesGuard)
+@UseGuards(AppJwtAuthGuard, RolesGuard)
 @ApiTags('Users')
 @Controller({
   path: 'users',
@@ -44,7 +45,11 @@ export class UsersController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createProfileDto: CreateUserDto): Promise<User> {
-    return this.usersService.create(createProfileDto, true);
+    try {
+      return this.usersService.create(createProfileDto, true);
+    } catch (error) {
+      throw AppException.handle(error, error.message);
+    }
   }
 
   @SerializeOptions({

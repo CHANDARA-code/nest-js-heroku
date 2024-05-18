@@ -1,30 +1,33 @@
 import {
-  HttpException,
   HttpStatus,
   ValidationError,
   ValidationPipeOptions,
 } from '@nestjs/common';
+import { AppException } from './exception/app-exception/app-exception';
 
 const validationOptions: ValidationPipeOptions = {
   transform: true,
   whitelist: true,
   errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-  exceptionFactory: (errors: ValidationError[]) =>
-    new HttpException(
-      {
-        status: HttpStatus.UNPROCESSABLE_ENTITY,
-        errors: errors.reduce(
-          (accumulator, currentValue) => ({
-            ...accumulator,
-            [currentValue.property]: Object.values(
-              currentValue.constraints ?? {},
-            ).join(', '),
-          }),
-          {},
-        ),
-      },
+  exceptionFactory: (errors: ValidationError[]) => {
+    const errorMessages = errors.reduce(
+      (accumulator, currentValue) => ({
+        ...accumulator,
+        [currentValue.property]: Object.values(
+          currentValue.constraints ?? {},
+        ).join(', '),
+      }),
+      {},
+    );
+
+    const formattedMessage = Object.values(errorMessages).join(', ');
+
+    return new AppException(
+      formattedMessage,
+      errorMessages,
       HttpStatus.UNPROCESSABLE_ENTITY,
-    ),
+    );
+  },
 };
 
 export default validationOptions;
