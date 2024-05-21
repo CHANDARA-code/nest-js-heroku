@@ -1,8 +1,4 @@
-import {
-  ClassSerializerInterceptor,
-  ValidationPipe,
-  VersioningType,
-} from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -40,7 +36,7 @@ async function bootstrap() {
             format.cli(),
             format.splat(),
             format.timestamp(),
-            format.printf((info) => {
+            format.printf(info => {
               return `${info.timestamp} ${info.level}: ${info.message}`;
             }),
           ),
@@ -52,12 +48,9 @@ async function bootstrap() {
   const configService = app.get(ConfigService<AllConfigType>);
 
   app.enableShutdownHooks();
-  app.setGlobalPrefix(
-    configService.getOrThrow('app.apiPrefix', { infer: true }),
-    {
-      exclude: ['/'],
-    },
-  );
+  app.setGlobalPrefix(configService.getOrThrow('app.apiPrefix', { infer: true }), {
+    exclude: ['/'],
+  });
   app.enableVersioning({
     type: VersioningType.URI,
   });
@@ -65,12 +58,7 @@ async function bootstrap() {
   app.useGlobalFilters(new AppExceptionFilter());
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
-  const options = new DocumentBuilder()
-    .setTitle('API')
-    .setDescription('API docs')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
+  const options = new DocumentBuilder().setTitle('API').setDescription('API docs').setVersion('1.0').addBearerAuth().build();
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);

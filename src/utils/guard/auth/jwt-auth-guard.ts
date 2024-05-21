@@ -9,19 +9,11 @@ export class AppJwtAuthGuard extends AuthGuard('jwt') {
     console.log(`App Exception >> AppJwtAuthGuard >>`, context);
     if (err || !user) {
       if (info && info.message) {
-        throw new AppException(
-          'Unauthorized access',
-          'No Rigth to access',
-          HttpStatus.UNAUTHORIZED,
-        );
+        throw new AppException('Unauthorized access', 'No Rigth to access', HttpStatus.UNAUTHORIZED);
       } else if (err) {
         throw new AppException(err, err, HttpStatus.UNAUTHORIZED);
       } else {
-        throw new AppException(
-          'Unauthorized access',
-          'No Rigth to access',
-          HttpStatus.UNAUTHORIZED,
-        );
+        throw new AppException('Unauthorized access', 'No Rigth to access', HttpStatus.UNAUTHORIZED);
       }
     }
     return user;

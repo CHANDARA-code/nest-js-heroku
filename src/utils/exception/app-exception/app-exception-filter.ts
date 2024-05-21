@@ -43,8 +43,7 @@ export class AppExceptionFilter implements ExceptionFilter {
       switch (true) {
         case exception instanceof BadRequestException:
           message = 'Bad request';
-          technicalMessage =
-            'The request could not be understood by the server';
+          technicalMessage = 'The request could not be understood by the server';
           statusCode = HttpStatus.BAD_REQUEST;
           break;
 
@@ -62,8 +61,7 @@ export class AppExceptionFilter implements ExceptionFilter {
 
         case exception instanceof ForbiddenException:
           message = 'Forbidden';
-          technicalMessage =
-            'You do not have permission to access this resource';
+          technicalMessage = 'You do not have permission to access this resource';
           statusCode = HttpStatus.FORBIDDEN;
           break;
 
@@ -93,8 +91,7 @@ export class AppExceptionFilter implements ExceptionFilter {
 
         case exception instanceof HttpVersionNotSupportedException:
           message = 'HTTP Version Not Supported';
-          technicalMessage =
-            'The HTTP version used in the request is not supported';
+          technicalMessage = 'The HTTP version used in the request is not supported';
           statusCode = HttpStatus.HTTP_VERSION_NOT_SUPPORTED;
           break;
 
@@ -112,8 +109,7 @@ export class AppExceptionFilter implements ExceptionFilter {
 
         case exception instanceof UnprocessableEntityException:
           message = 'Unprocessable Entity';
-          technicalMessage =
-            'The request was well-formed but was unable to be followed due to semantic errors';
+          technicalMessage = 'The request was well-formed but was unable to be followed due to semantic errors';
           statusCode = HttpStatus.UNPROCESSABLE_ENTITY;
           break;
 
@@ -131,22 +127,19 @@ export class AppExceptionFilter implements ExceptionFilter {
 
         case exception instanceof ImATeapotException:
           message = "I'm a Teapot";
-          technicalMessage =
-            'The server refuses to brew coffee because it is a teapot';
+          technicalMessage = 'The server refuses to brew coffee because it is a teapot';
           statusCode = HttpStatus.I_AM_A_TEAPOT;
           break;
 
         case exception instanceof MethodNotAllowedException:
           message = 'Method Not Allowed';
-          technicalMessage =
-            'The requested method is not allowed for this resource';
+          technicalMessage = 'The requested method is not allowed for this resource';
           statusCode = HttpStatus.METHOD_NOT_ALLOWED;
           break;
 
         case exception instanceof BadGatewayException:
           message = 'Bad Gateway';
-          technicalMessage =
-            'The server received an invalid response from an upstream server';
+          technicalMessage = 'The server received an invalid response from an upstream server';
           statusCode = HttpStatus.BAD_GATEWAY;
           break;
 
@@ -158,15 +151,13 @@ export class AppExceptionFilter implements ExceptionFilter {
 
         case exception instanceof GatewayTimeoutException:
           message = 'Gateway Timeout';
-          technicalMessage =
-            'The server did not receive a timely response from an upstream server';
+          technicalMessage = 'The server did not receive a timely response from an upstream server';
           statusCode = HttpStatus.GATEWAY_TIMEOUT;
           break;
 
         case exception instanceof PreconditionFailedException:
           message = 'Precondition Failed';
-          technicalMessage =
-            'The server does not meet one of the preconditions specified in the request';
+          technicalMessage = 'The server does not meet one of the preconditions specified in the request';
           statusCode = HttpStatus.PRECONDITION_FAILED;
           break;
 
@@ -186,11 +177,7 @@ export class AppExceptionFilter implements ExceptionFilter {
       exception = new AppException(message, technicalMessage, statusCode);
     }
 
-    const apiResponse = ApiResponseService.createError(
-      exception.statusCode,
-      exception.message,
-      exception.technicalMessage,
-    );
+    const apiResponse = ApiResponseService.createError(exception.statusCode, exception.message, exception.technicalMessage);
     response.status(exception.statusCode).json(apiResponse);
   }
 }

@@ -13,9 +13,7 @@ export class ArticlesService {
     private articlesRepository: Repository<Article>,
   ) {}
   create(createArticleDto: CreateArticleDto): Promise<Article> {
-    const newArticle = this.articlesRepository.save(
-      this.articlesRepository.create(createArticleDto),
-    );
+    const newArticle = this.articlesRepository.save(this.articlesRepository.create(createArticleDto));
 
     return newArticle;
   }

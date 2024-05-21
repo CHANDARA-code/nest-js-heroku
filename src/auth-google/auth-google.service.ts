@@ -16,9 +16,7 @@ export class AuthGoogleService {
     );
   }
 
-  async getProfileByToken(
-    loginDto: AuthGoogleLoginDto,
-  ): Promise<SocialInterface> {
+  async getProfileByToken(loginDto: AuthGoogleLoginDto): Promise<SocialInterface> {
     const ticket = await this.google.verifyIdToken({
       idToken: loginDto.idToken,
       audience: [
