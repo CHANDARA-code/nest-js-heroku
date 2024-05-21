@@ -13,9 +13,7 @@ export class FilesService {
     private readonly fileRepository: Repository<FileEntity>,
   ) {}
 
-  async uploadFile(
-    file: Express.Multer.File | Express.MulterS3.File,
-  ): Promise<FileEntity> {
+  async uploadFile(file: Express.Multer.File | Express.MulterS3.File): Promise<FileEntity> {
     if (!file) {
       throw new HttpException(
         {

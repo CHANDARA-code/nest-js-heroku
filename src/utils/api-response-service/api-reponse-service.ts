@@ -56,11 +56,7 @@ export class ApiResponseService {
    * @param message - Success message (default is 'Request successful').
    * @returns A promise resolving to an ApiResponse object containing the success data.
    */
-  static async createSuccess<R = any, G = any>(
-    data?: R,
-    generic?: G,
-    message: string = 'Request successful',
-  ): Promise<ApiResponse<R>> {
+  static createSuccess<R = any, G = any>(data?: R, generic?: G, message: string = 'Request successful'): ApiResponse<R> {
     const response: ApiResponse<R> = {
       code: HttpStatus.OK,
       success: true,
@@ -122,9 +118,12 @@ export class ApiResponseService {
     technicalMessage?: string,
     generic?: G,
   ): ApiResponse<null, E> {
-    const errorGeneric: GenericResponse | G = this.getGeneric<
-      GenericResponse | G
-    >(errorMessage, errorCode, technicalMessage, generic);
+    const errorGeneric: GenericResponse | G = this.getGeneric<GenericResponse | G>(
+      errorMessage,
+      errorCode,
+      technicalMessage,
+      generic,
+    );
     const errorResponse: ApiResponse<null, E> = {
       code: errorCode,
       success: false,
@@ -177,9 +176,7 @@ export class ApiResponseService {
     technicalMessage?: string,
     generic?: G,
   ): GenericResponse | G {
-    return generic
-      ? generic
-      : this.createGeneric(errorMessage, errorCode, technicalMessage);
+    return generic ? generic : this.createGeneric(errorMessage, errorCode, technicalMessage);
   }
 
   /**
@@ -211,11 +208,7 @@ export class ApiResponseService {
    * @param technicalMessage - Optional technical message.
    * @returns A GenericResponse object containing the error details.
    */
-  static createGeneric(
-    errorMessage: string,
-    errorCode: number,
-    technicalMessage?: string,
-  ): GenericResponse {
+  static createGeneric(errorMessage: string, errorCode: number, technicalMessage?: string): GenericResponse {
     return {
       isError: true,
       message: errorMessage,
