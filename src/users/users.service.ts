@@ -7,6 +7,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { NullableType } from '../utils/types/nullable.type';
 import { MailService } from '../mail/mail.service';
+import { AppException } from 'src/utils/exception/app-exception/app-exception';
 
 @Injectable()
 export class UsersService {
@@ -20,18 +21,22 @@ export class UsersService {
     createProfileDto: CreateUserDto,
     isAdmin: boolean,
   ): Promise<User> {
-    const newUser = this.usersRepository.save(
-      this.usersRepository.create(createProfileDto),
-    );
+    try {
+      const newUser = this.usersRepository.save(
+        this.usersRepository.create(createProfileDto),
+      );
 
-    if (isAdmin) {
-      await this.mailService.userCreatedByAdmin({
-        to: createProfileDto.email,
-        initialPass: createProfileDto.password,
-      });
+      if (isAdmin) {
+        await this.mailService.userCreatedByAdmin({
+          to: createProfileDto.email,
+          initialPass: createProfileDto.password,
+        });
+      }
+
+      return newUser;
+    } catch (error) {
+      throw AppException.handle(error, error.message);
     }
-
-    return newUser;
   }
 
   findManyWithPagination(

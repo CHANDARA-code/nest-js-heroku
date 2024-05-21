@@ -22,7 +22,9 @@ export class AuthGoogleService {
     const ticket = await this.google.verifyIdToken({
       idToken: loginDto.idToken,
       audience: [
-        this.configService.getOrThrow('google.clientId', { infer: true }),
+        this.configService.getOrThrow('google.clientId', {
+          infer: true,
+        }),
       ],
     });
 

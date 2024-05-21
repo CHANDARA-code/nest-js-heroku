@@ -13,7 +13,9 @@ export class AuthAppleService {
     loginDto: AuthAppleLoginDto,
   ): Promise<SocialInterface> {
     const data = await appleSigninAuth.verifyIdToken(loginDto.idToken, {
-      audience: this.configService.get('apple.appAudience', { infer: true }),
+      audience: this.configService.get('apple.appAudience', {
+        infer: true,
+      }),
     });
 
     return {

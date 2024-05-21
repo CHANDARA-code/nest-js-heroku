@@ -1,0 +1,24 @@
+{
+  "errors": {
+    "BadRequestException": "Bad request. Please check your data.",
+    "UnauthorizedException": "Unauthorized. Please authenticate.",
+    "NotFoundException": "The requested resource was not found.",
+    "ForbiddenException": "Access to the requested resource is forbidden.",
+    "NotAcceptableException": "The requested resource is not acceptable.",
+    "RequestTimeoutException": "Request timeout. Please try again later.",
+    "ConflictException": "Conflict detected. Please resolve the conflict and try again.",
+    "GoneException": "The resource you requested is no longer available.",
+    "HttpVersionNotSupportedException": "HTTP version not supported. Please use a supported version.",
+    "PayloadTooLargeException": "Payload too large. Please reduce the size of your request.",
+    "UnsupportedMediaTypeException": "Unsupported media type. Please use a supported media format.",
+    "UnprocessableEntityException": "Unprocessable entity. Please check your submission for errors.",
+    "InternalServerErrorException": "An internal server error occurred. Please try again later.",
+    "NotImplementedException": "This functionality has not been implemented.",
+    "ImATeapotException": "I'm a teapot. The server refuses to brew coffee because it is a teapot.",
+    "MethodNotAllowedException": "Method not allowed. Please check the request method.",
+    "BadGatewayException": "Bad gateway. An error occurred while contacting the upstream server.",
+    "ServiceUnavailableException": "Service unavailable. Please try again later.",
+    "GatewayTimeoutException": "Gateway timeout. The request timed out while waiting for a response from the upstream server.",
+    "PreconditionFailedException": "Precondition failed. One or more conditions of the request header fields evaluated to false."
+  }
+}
