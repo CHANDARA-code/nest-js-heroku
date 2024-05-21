@@ -7,6 +7,8 @@ export class HomeService {
   constructor(private configService: ConfigService<AllConfigType>) {}
 
   appInfo() {
-    return { name: this.configService.get('app.name', { infer: true }) };
+    return {
+      name: this.configService.get('app.name', { infer: true }),
+    };
   }
 }

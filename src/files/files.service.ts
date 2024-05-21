@@ -29,16 +29,18 @@ export class FilesService {
     }
 
     const path = {
-      local: `/${this.configService.get('app.apiPrefix', { infer: true })}/v1/${
-        file.path
-      }`,
+      local: `/${this.configService.get('app.apiPrefix', {
+        infer: true,
+      })}/v1/${file.path}`,
       s3: (file as Express.MulterS3.File).location,
     };
 
     return this.fileRepository.save(
       this.fileRepository.create({
         path: path[
-          this.configService.getOrThrow('file.driver', { infer: true })
+          this.configService.getOrThrow('file.driver', {
+            infer: true,
+          })
         ],
       }),
     );

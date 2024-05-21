@@ -58,9 +58,12 @@ export class UsersController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll(
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
-    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
-    @Query('offset', new DefaultValuePipe(0), ParseIntPipe) offset: number,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe)
+    page: number,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe)
+    limit: number,
+    @Query('offset', new DefaultValuePipe(0), ParseIntPipe)
+    offset: number,
   ): Promise<StandardPaginationResultType<User>> {
     if (limit > 50) {
       limit = 50;

@@ -34,7 +34,9 @@ import { AllConfigType } from 'src/config/config.type';
             }),
           s3: () => {
             const s3 = new S3Client({
-              region: configService.get('file.awsS3Region', { infer: true }),
+              region: configService.get('file.awsS3Region', {
+                infer: true,
+              }),
               credentials: {
                 accessKeyId: configService.getOrThrow('file.accessKeyId', {
                   infer: true,
@@ -87,10 +89,14 @@ import { AllConfigType } from 'src/config/config.type';
           },
           storage:
             storages[
-              configService.getOrThrow('file.driver', { infer: true })
+              configService.getOrThrow('file.driver', {
+                infer: true,
+              })
             ](),
           limits: {
-            fileSize: configService.get('file.maxFileSize', { infer: true }),
+            fileSize: configService.get('file.maxFileSize', {
+              infer: true,
+            }),
           },
         };
       },

@@ -2,13 +2,13 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { QueryFailedError } from 'typeorm';
 import { AppError } from '../app-error/app-error';
 
-export class AppException extends Error {
+export class AppException extends AppError {
   statusCode: number;
   message: string;
   technicalMessage: any;
 
   constructor(message: string, technicalMessage: any, statusCode: number) {
-    super(message);
+    super(message, technicalMessage, statusCode);
     this.name = 'AppException';
     this.statusCode = statusCode ?? HttpStatus.EXPECTATION_FAILED;
     this.message = message;

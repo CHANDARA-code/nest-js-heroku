@@ -432,7 +432,9 @@ export class AuthService {
           sessionId: data.sessionId,
         },
         {
-          secret: this.configService.getOrThrow('auth.secret', { infer: true }),
+          secret: this.configService.getOrThrow('auth.secret', {
+            infer: true,
+          }),
           expiresIn: tokenExpiresIn,
         },
       ),
