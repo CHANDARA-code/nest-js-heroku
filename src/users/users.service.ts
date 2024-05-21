@@ -17,14 +17,9 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async create(
-    createProfileDto: CreateUserDto,
-    isAdmin: boolean,
-  ): Promise<User> {
+  async create(createProfileDto: CreateUserDto, isAdmin: boolean): Promise<User> {
     try {
-      const newUser = this.usersRepository.save(
-        this.usersRepository.create(createProfileDto),
-      );
+      const newUser = this.usersRepository.save(this.usersRepository.create(createProfileDto));
 
       if (isAdmin) {
         await this.mailService.userCreatedByAdmin({
@@ -39,9 +34,7 @@ export class UsersService {
     }
   }
 
-  findManyWithPagination(
-    paginationOptions: IPaginationOptions,
-  ): Promise<User[]> {
+  findManyWithPagination(paginationOptions: IPaginationOptions): Promise<User[]> {
     return this.usersRepository.find({
       skip: paginationOptions.offset,
       take: paginationOptions.limit,

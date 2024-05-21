@@ -61,10 +61,7 @@ export class MailService {
     });
   }
 
-  async userCreatedByAdmin(mailData: {
-    initialPass: string | undefined;
-    to: string | null;
-  }): Promise<void> {
+  async userCreatedByAdmin(mailData: { initialPass: string | undefined; to: string | null }): Promise<void> {
     const i18n = I18nContext.current();
     let accountCreatedTitle: MaybeType<string>;
     let text1: MaybeType<string>;
@@ -74,15 +71,14 @@ export class MailService {
     let initialPassText: MaybeType<string>;
 
     if (i18n) {
-      [accountCreatedTitle, text1, text2, text3, loginButton, initialPassText] =
-        await Promise.all([
-          i18n.t('common.accountCreatedTitle'),
-          i18n.t('account-created.text1'),
-          i18n.t('account-created.text2'),
-          i18n.t('account-created.text3'),
-          i18n.t('account-created.loginButton'),
-          i18n.t('account-created.initialPassText'),
-        ]);
+      [accountCreatedTitle, text1, text2, text3, loginButton, initialPassText] = await Promise.all([
+        i18n.t('common.accountCreatedTitle'),
+        i18n.t('account-created.text1'),
+        i18n.t('account-created.text2'),
+        i18n.t('account-created.text3'),
+        i18n.t('account-created.loginButton'),
+        i18n.t('account-created.initialPassText'),
+      ]);
     }
 
     await this.mailerService.sendMail({

@@ -99,6 +99,6 @@ export class User extends EntityHelper {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @OneToMany(() => Article, (article) => article.author)
+  @OneToMany(() => Article, article => article.author)
   articles?: Article[];
 }

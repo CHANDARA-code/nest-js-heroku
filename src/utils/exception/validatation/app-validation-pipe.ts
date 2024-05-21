@@ -1,9 +1,4 @@
-import {
-  HttpStatus,
-  Injectable,
-  PipeTransform,
-  ArgumentMetadata,
-} from '@nestjs/common';
+import { HttpStatus, Injectable, PipeTransform, ArgumentMetadata } from '@nestjs/common';
 import { AppException } from '../app-exception/app-exception';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
@@ -20,10 +15,8 @@ export class AppValidationPipe implements PipeTransform<any> {
 
     if (errors.length > 0) {
       const errorMessage = errors
-        .map((error) =>
-          error.constraints ? Object.values(error.constraints).join(', ') : '',
-        )
-        .filter((message) => message !== '')
+        .map(error => (error.constraints ? Object.values(error.constraints).join(', ') : ''))
+        .filter(message => message !== '')
         .join(', ');
       throw new AppException(errorMessage, errors, HttpStatus.BAD_REQUEST);
     }

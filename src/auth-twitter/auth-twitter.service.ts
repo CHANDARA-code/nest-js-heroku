@@ -9,9 +9,7 @@ import { AllConfigType } from 'src/config/config.type';
 export class AuthTwitterService {
   constructor(private configService: ConfigService<AllConfigType>) {}
 
-  async getProfileByToken(
-    loginDto: AuthTwitterLoginDto,
-  ): Promise<SocialInterface> {
+  async getProfileByToken(loginDto: AuthTwitterLoginDto): Promise<SocialInterface> {
     const twitter = new Twitter({
       consumer_key: this.configService.getOrThrow('twitter.consumerKey', {
         infer: true,
@@ -23,14 +21,10 @@ export class AuthTwitterService {
       access_token_secret: loginDto.accessTokenSecret,
     });
 
-    const data: Twitter.ResponseData = await new Promise((resolve) => {
-      twitter.get(
-        'account/verify_credentials',
-        { include_email: true },
-        (error, profile) => {
-          resolve(profile);
-        },
-      );
+    const data: Twitter.ResponseData = await new Promise(resolve => {
+      twitter.get('account/verify_credentials', { include_email: true }, (error, profile) => {
+        resolve(profile);
+      });
     });
 
     return {

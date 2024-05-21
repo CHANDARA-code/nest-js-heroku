@@ -18,25 +18,15 @@ export class AppException extends AppError {
     Error.captureStackTrace(this, this.constructor);
   }
 
-  static fromQueryFailedError(
-    error: QueryFailedError,
-    message: string,
-  ): AppException {
+  static fromQueryFailedError(error: QueryFailedError, message: string): AppException {
     return new AppException(message, error.message, HttpStatus.BAD_GATEWAY);
   }
 
   static fromAppError(error: AppError): AppException {
-    return new AppException(
-      error.message,
-      error.technicalMessage,
-      error.statusCode,
-    );
+    return new AppException(error.message, error.technicalMessage, error.statusCode);
   }
 
-  static fromHttpException(
-    error: HttpException,
-    message: string,
-  ): AppException {
+  static fromHttpException(error: HttpException, message: string): AppException {
     return new AppException(message, error.message, error.getStatus());
   }
 
@@ -49,11 +39,7 @@ export class AppException extends AppError {
       case error instanceof HttpException:
         return this.fromHttpException(error, message);
       default:
-        return new AppException(
-          'Internal Server Error',
-          error.message,
-          HttpStatus.INTERNAL_SERVER_ERROR,
-        );
+        return new AppException('Internal Server Error', error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

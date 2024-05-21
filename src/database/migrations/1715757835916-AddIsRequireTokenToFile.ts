@@ -1,9 +1,7 @@
 import { AppException } from 'src/utils/exception/app-exception/app-exception';
 import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
 
-export class AddIsRequireTokenToFile1715757835916
-  implements MigrationInterface
-{
+export class AddIsRequireTokenToFile1715757835916 implements MigrationInterface {
   name = 'AddIsRequireTokenToFile1715757835916';
 
   public async up(queryRunner: QueryRunner): Promise<void> {

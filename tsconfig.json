@@ -6,8 +6,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2022",           // Updated to ES2022
-    "lib": ["es2022"],            // Ensure all ES2022 features are available
+    "target": "es2022", // Updated to ES2022
+    "lib": ["es2022"], // Ensure all ES2022 features are available
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -20,6 +20,6 @@
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true
   },
-  "include": ["src/**/*"],  // Ensure all source files are included
-  "exclude": ["node_modules", "**/*.spec.ts"]  // Exclude node_modules and test files from the compilation
+  "include": ["src/**/*"], // Ensure all source files are included
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*-spec.ts", "test/**/*-spec.ts"] // Exclude node_modules and test files from the compilation
 }

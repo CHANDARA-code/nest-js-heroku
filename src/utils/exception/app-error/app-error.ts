@@ -28,11 +28,7 @@ export class AppError extends Error {
     return this.statusCode;
   }
 
-  static ThrowIf(
-    condition: boolean,
-    message: string,
-    statusCode: number = HttpStatus.EXPECTATION_FAILED,
-  ) {
+  static ThrowIf(condition: boolean, message: string, statusCode: number = HttpStatus.EXPECTATION_FAILED) {
     if (condition) {
       throw new AppError(message, message, statusCode);
     }
@@ -40,11 +36,7 @@ export class AppError extends Error {
 
   static get if() {
     return {
-      aBiggerb: (
-        condition: boolean,
-        message: string,
-        statusCode: number = HttpStatus.EXPECTATION_FAILED,
-      ) => {
+      aBiggerb: (condition: boolean, message: string, statusCode: number = HttpStatus.EXPECTATION_FAILED) => {
         if (condition) {
           throw new AppError(message, message, statusCode);
         }

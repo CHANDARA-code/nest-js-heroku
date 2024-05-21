@@ -1,8 +1,4 @@
-import {
-  HttpStatus,
-  ValidationError,
-  ValidationPipeOptions,
-} from '@nestjs/common';
+import { HttpStatus, ValidationError, ValidationPipeOptions } from '@nestjs/common';
 import { AppException } from './exception/app-exception/app-exception';
 
 const validationOptions: ValidationPipeOptions = {
@@ -13,20 +9,14 @@ const validationOptions: ValidationPipeOptions = {
     const errorMessages = errors.reduce(
       (accumulator, currentValue) => ({
         ...accumulator,
-        [currentValue.property]: Object.values(
-          currentValue.constraints ?? {},
-        ).join(', '),
+        [currentValue.property]: Object.values(currentValue.constraints ?? {}).join(', '),
       }),
       {},
     );
 
     const formattedMessage = Object.values(errorMessages).join(', ');
 
-    return new AppException(
-      formattedMessage,
-      errorMessages,
-      HttpStatus.UNPROCESSABLE_ENTITY,
-    );
+    return new AppException(formattedMessage, errorMessages, HttpStatus.UNPROCESSABLE_ENTITY);
   },
 };
 
