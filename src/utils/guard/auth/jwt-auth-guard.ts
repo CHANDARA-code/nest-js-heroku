@@ -6,7 +6,7 @@ import { AppException } from 'src/utils/exception/app-exception/app-exception';
 @Injectable()
 export class AppJwtAuthGuard extends AuthGuard('jwt') {
   handleRequest(err: any, user: any, info: any, context: ExecutionContext) {
-    console.log(context);
+    console.log(`App Exception >> AppJwtAuthGuard >>`, context);
     if (err || !user) {
       if (info && info.message) {
         throw new AppException(

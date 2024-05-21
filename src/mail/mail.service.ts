@@ -51,7 +51,9 @@ export class MailService {
           infer: true,
         })}/confirm-email/${mailData.data.hash}`,
         actionTitle: emailConfirmTitle,
-        app_name: this.configService.get('app.name', { infer: true }),
+        app_name: this.configService.get('app.name', {
+          infer: true,
+        }),
         text1,
         text2,
         text3,
@@ -104,7 +106,9 @@ export class MailService {
           infer: true,
         })}/login`,
         actionTitle: loginButton,
-        app_name: this.configService.get('app.name', { infer: true }),
+        app_name: this.configService.get('app.name', {
+          infer: true,
+        }),
         text1,
         text2,
         text3,
