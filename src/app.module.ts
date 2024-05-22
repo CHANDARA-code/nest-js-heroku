@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { FilesModule } from './files/files.module';
 import { AuthModule } from './auth/auth.module';
@@ -29,6 +29,7 @@ import { AllConfigType } from './config/config.type';
 import { SessionModule } from './session/session.module';
 import { MailerModule } from './mailer/mailer.module';
 import { ArticlesModule } from './articles/articles.module';
+import { RateLimitConfig } from './utils/intercept';
 
 @Module({
   imports: [
@@ -94,4 +95,8 @@ import { ArticlesModule } from './articles/articles.module';
     ArticlesModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    RateLimitConfig.applyRateLimit(consumer);
+  }
+}
