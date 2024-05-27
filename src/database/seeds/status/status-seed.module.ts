@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Status } from 'src/statuses/entities/status.entity';
 import { StatusSeedService } from './status-seed.service';
+import { Status } from 'src/core/dto/statuses/entities/status.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Status])],

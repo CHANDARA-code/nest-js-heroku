@@ -3,7 +3,7 @@ import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { ValidationArguments } from 'class-validator/types/validation/ValidationArguments';
 import { Injectable } from '@nestjs/common';
-import { AppException } from '../exception/app-exception/app-exception';
+import { AppException } from 'src/core/exception/app-exception/app-exception';
 
 @Injectable()
 @ValidatorConstraint({ name: 'IsExist', async: true })

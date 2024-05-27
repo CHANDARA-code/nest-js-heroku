@@ -9,11 +9,19 @@ import { AllConfigType } from './config/config.type';
 import { WinstonModule } from 'nest-winston';
 import { format, transports } from 'winston';
 import 'winston-daily-rotate-file';
-import { AppExceptionFilter } from './utils/exception/app-exception/app-exception-filter';
+import helmet from 'helmet';
+import { AppExceptionFilter } from './core/exception/app-exception/app-exception-filter';
 
 async function bootstrap() {
+  console.log(`
+  Running in Production mode: 
+  Server: localhost:3000
+  Document: localhost:3000/docs
+  Database Viewer: localhost:8080
+  `);
   const app = await NestFactory.create(AppModule, {
     cors: true,
+    snapshot: true,
     logger: WinstonModule.createLogger({
       transports: [
         new transports.DailyRotateFile({
@@ -57,12 +65,10 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe(validationOptions));
   app.useGlobalFilters(new AppExceptionFilter());
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
-
   const options = new DocumentBuilder().setTitle('API').setDescription('API docs').setVersion('1.0').addBearerAuth().build();
-
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
-
+  app.use(helmet());
   await app.listen(configService.getOrThrow('app.port', { infer: true }));
 }
 void bootstrap();
