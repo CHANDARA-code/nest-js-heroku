@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Article } from 'src/articles/entities/article.entity';
 import { Repository } from 'typeorm';
 import { LoremIpsum } from 'lorem-ipsum';
+import { Article } from 'src/api/articles/entities/article.entity';
 
 @Injectable()
 export class ArticleSeedService {
