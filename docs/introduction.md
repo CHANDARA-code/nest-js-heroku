@@ -1,9 +1,5 @@
 # Introduction
 
-## Online demo
-
-<https://nestjs-boilerplate.poliath.cloud>
-
 ## Features
 
 - [x] Database ([typeorm](https://www.npmjs.com/package/typeorm)).
