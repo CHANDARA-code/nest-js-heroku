@@ -3,7 +3,6 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
-import { AppModule } from './app.module';
 import validationOptions from './utils/validation-options';
 import { AllConfigType } from './config/config.type';
 import { WinstonModule } from 'nest-winston';
@@ -11,16 +10,17 @@ import { format, transports } from 'winston';
 import 'winston-daily-rotate-file';
 import helmet from 'helmet';
 import { AppExceptionFilter } from './core/exception/app-exception/app-exception-filter';
+import { AppModuleDev } from './app.module.dev';
 
 async function bootstrap() {
   console.log(`
-  Running in Production mode: 
+  Running in Development mode: 
   Server: http://localhost:3000/
   Document: http://localhost:3000/docs
   Database Viewer: http://localhost:8080
   Mail Viewer: http://localhost:1080
   `);
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create(AppModuleDev, {
     cors: true,
     snapshot: true,
     logger: WinstonModule.createLogger({
@@ -53,7 +53,7 @@ async function bootstrap() {
       ],
     }),
   });
-  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+  useContainer(app.select(AppModuleDev), { fallbackOnErrors: true });
   const configService = app.get(ConfigService<AllConfigType>);
 
   app.enableShutdownHooks();
