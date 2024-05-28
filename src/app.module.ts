@@ -27,7 +27,7 @@ import { ForgotModule } from './api/forgot/forgot.module';
 import { HomeModule } from './api/home/home.module';
 import { ArticlesModule } from './api/articles/articles.module';
 import { MailModule } from './api/mail/mail.module';
-import { MailerModule } from './core/mailer/mailer.module';
+import { MailerModule } from '@core/mailer/mailer.module';
 import { UsersModule } from './api/users/users.module';
 import { SessionModule } from './api/session/session.module';
 import { ServeStaticModule } from '@nestjs/serve-static';

@@ -19,12 +19,12 @@ import { NullableType } from '@utils/types/nullable.type';
 import { ForgotService } from '../forgot/forgot.service';
 import { User } from '@api/users/entities/user.entity';
 import { MailService } from '../mail/mail.service';
-import { Role } from 'src/core/roles/entities/role.entity';
-import { RoleEnum } from 'src/core/roles/roles.enum';
+import { Role } from '@core/roles/entities/role.entity';
+import { RoleEnum } from '@core/roles/roles.enum';
 import { SessionService } from '../session/session.service';
-import { SocialInterface } from 'src/core/dto/social/interfaces/social.interface';
-import { Status } from 'src/core/dto/statuses/entities/status.entity';
-import { StatusEnum } from 'src/core/dto/statuses/statuses.enum';
+import { SocialInterface } from '@core/dto/social/interfaces/social.interface';
+import { Status } from '@core/dto/statuses/entities/status.entity';
+import { StatusEnum } from '@core/dto/statuses/statuses.enum';
 import { Session } from '../session/entities/session.entity';
 
 @Injectable()
