@@ -4,14 +4,14 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
-import validationOptions from './utils/validation-options';
-import { AllConfigType } from './config/config.type';
+import validationOptions from '@utils/validation-options';
+import { AllConfigType } from '@config/config.type';
 import { WinstonModule } from 'nest-winston';
 import { format, transports } from 'winston';
 import 'winston-daily-rotate-file';
 import helmet from 'helmet';
 import { AppExceptionFilter } from './core/exception/app-exception/app-exception-filter';
-
+import 'module-alias/register';
 async function bootstrap() {
   console.log(`
   Running in Production mode: 

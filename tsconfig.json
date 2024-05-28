@@ -18,7 +18,16 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@api/*": ["./src/api/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@config/*": ["./src/config/*"],
+      "@core/*": ["./src/core/*"],
+      "@database/*": ["./src/database/*"],
+      "@utils/*": ["./src/utils/*"]
+    }
   },
   "include": ["src/**/*"], // Ensure all source files are included
   "exclude": ["node_modules", "**/*.spec.ts", "**/*-spec.ts", "test/**/*-spec.ts"] // Exclude node_modules and test files from the compilation

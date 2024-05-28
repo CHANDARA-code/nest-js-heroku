@@ -1,13 +1,13 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import databaseConfig from './config/database.config';
-import authConfig from './config/auth.config';
-import appConfig from './config/app.config';
-import mailConfig from './config/mail.config';
-import fileConfig from './config/file.config';
-import facebookConfig from './config/facebook.config';
-import googleConfig from './config/google.config';
-import twitterConfig from './config/twitter.config';
-import appleConfig from './config/apple.config';
+import databaseConfig from '@config/database.config';
+import authConfig from '@config/auth.config';
+import appConfig from '@config/app.config';
+import mailConfig from '@config/mail.config';
+import fileConfig from '@config/file.config';
+import facebookConfig from '@config/facebook.config';
+import googleConfig from '@config/google.config';
+import twitterConfig from '@config/twitter.config';
+import appleConfig from '@config/apple.config';
 import path from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -15,8 +15,8 @@ import { I18nModule } from 'nestjs-i18n/dist/i18n.module';
 import { HeaderResolver } from 'nestjs-i18n';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { AllConfigType } from './config/config.type';
-import { RateLimitConfig } from './utils/intercept';
+import { AllConfigType } from '@config/config.type';
+import { RateLimitConfig } from '@utils/intercept';
 import { FilesModule } from './api/files/files.module';
 import { AuthModule } from './api/auth/auth.module';
 import { AuthAppleModule } from './api/auth-apple/auth-apple.module';
@@ -31,7 +31,7 @@ import { MailerModule } from './core/mailer/mailer.module';
 import { UsersModule } from './api/users/users.module';
 import { SessionModule } from './api/session/session.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { AssetsEnum } from './utils/constants';
+import { AssetsEnum } from '@utils/constants';
 
 @Module({
   imports: [

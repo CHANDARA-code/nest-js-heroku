@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FileEntity } from './entities/file.entity';
 import { Repository } from 'typeorm';
-import { AllConfigType } from 'src/config/config.type';
+import { AllConfigType } from '@config/config.type';
 
 @Injectable()
 export class FilesService {

@@ -1,9 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn, AfterLoad, AfterInsert } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Allow, IsBoolean } from 'class-validator';
-import { EntityHelper } from 'src/utils/entity-helper';
-import { AppConfig } from 'src/config/config.type';
-import appConfig from 'src/config/app.config';
+import { EntityHelper } from '@utils/entity-helper';
+import { AppConfig } from '@config/config.type';
+import appConfig from '@config/app.config';
 
 @Entity({ name: 'file' })
 export class FileEntity extends EntityHelper {

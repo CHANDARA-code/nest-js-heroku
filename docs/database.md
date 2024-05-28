@@ -30,7 +30,7 @@ In NestJS Boilerplate uses [TypeORM](https://www.npmjs.com/package/typeorm) and 
    // /src/posts/entities/post.entity.ts
 
    import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-   import { EntityHelper } from 'src/utils/entity-helper';
+   import { EntityHelper } from '@utils/entity-helper';
 
    @Entity()
    export class Post extends EntityHelper {

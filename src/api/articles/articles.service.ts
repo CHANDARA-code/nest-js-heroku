@@ -3,8 +3,8 @@ import { CreateArticleDto } from './dto/create-article.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository } from 'typeorm';
 import { Article } from './entities/article.entity';
-import { EntityCondition } from 'src/utils/types/entity-condition.type';
-import { NullableType } from 'src/utils/types/nullable.type';
+import { EntityCondition } from '@utils/types/entity-condition.type';
+import { NullableType } from '@utils/types/nullable.type';
 
 @Injectable()
 export class ArticlesService {

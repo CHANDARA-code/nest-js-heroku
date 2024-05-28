@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, DeleteDateColumn } from 'typeorm';
 import { Allow } from 'class-validator';
-import { EntityHelper } from 'src/utils/entity-helper';
-import { User } from 'src/api/users/entities/user.entity';
+import { EntityHelper } from '@utils/entity-helper';
+import { User } from '@api/users/entities/user.entity';
 
 @Entity()
 export class Forgot extends EntityHelper {

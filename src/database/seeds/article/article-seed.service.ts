@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LoremIpsum } from 'lorem-ipsum';
-import { Article } from 'src/api/articles/entities/article.entity';
+import { Article } from '@api/articles/entities/article.entity';
 
 @Injectable()
 export class ArticleSeedService {

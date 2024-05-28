@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptions } from 'src/utils/types/find-options.type';
+import { FindOptions } from '@utils/types/find-options.type';
 import { DeepPartial, Not, Repository } from 'typeorm';
 import { Session } from './entities/session.entity';
-import { User } from 'src/api/users/entities/user.entity';
-import { NullableType } from 'src/utils/types/nullable.type';
+import { User } from '@api/users/entities/user.entity';
+import { NullableType } from '@utils/types/nullable.type';
 
 @Injectable()
 export class SessionService {
