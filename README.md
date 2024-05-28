@@ -1,24 +1,27 @@
-# NestJS REST API boilerplate 🇭🇷
+# NestJS REST API boilerplate 😘
 
-[![NestJS API CI](https://github.com/poliath/nestjs-poliath-boilerplate/actions/workflows/docker-e2e.yml/badge.svg?branch=master)](https://github.com/poliath/nestjs-poliath-boilerplate/actions/workflows/docker-e2e.yml)
+[![NestJS API CI](https://github.com/poliath/CHANDARA-code/nest-js-heroku/actions/workflows/docker-e2e.yml/badge.svg?branch=master)](https://github.com/poliath/CHANDARA-code/nest-js-heroku/actions/workflows/docker-e2e.yml)
+
 ## Description <!-- omit in toc -->
 
 NestJS REST API Boilerplate for Common Projects, Tailored for Seamless Integration with the [refine React boilerplate](https://github.com/poliath/poliath-refine-boilerplate) as frontend. for Frontend. However, this API is versatile enough to function independently and can be paired with various frontends such as React, Angular, Flutter, and more.
 
 ## Detailed Quick start guide
+
 Detailed quick start guide is available [HERE](./QUICK_START_GUIDE.md)
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Detailed Quick start guide](#detailed-quick-start-guide)
 - [Features](#features)
 - [Quick run](#quick-run)
 - [Comfortable development](#comfortable-development)
 - [Links](#links)
-- [Automatic update of dependencies](#automatic-update-of-dependencies)
 - [Database utils](#database-utils)
 - [Tests](#tests)
 - [Tests in Docker](#tests-in-docker)
 - [Test benchmarking](#test-benchmarking)
+- [Detailed documentation](#detailed-documentation)
 
 ## Features
 
@@ -31,6 +34,7 @@ Detailed quick start guide is available [HERE](./QUICK_START_GUIDE.md)
 - [x] Admin and User roles.
 - [x] I18N ([nestjs-i18n](https://www.npmjs.com/package/nestjs-i18n)).
 - [x] File uploads. Support local and Amazon S3 drivers.
+- [x] Public Folder
 - [x] Swagger.
 - [x] E2E and units tests.
 - [x] Docker.
@@ -40,7 +44,7 @@ Detailed quick start guide is available [HERE](./QUICK_START_GUIDE.md)
 ## Quick run
 
 ```bash
-git clone --depth 1 https://github.com/poliath/nestjs-poliath-boilerplate.git my-app
+git clone --depth 1 https://github.com/CHANDARA-code/nest-js-heroku.git my-app
 cd my-app/
 cp env-example .env
 docker compose up -d
@@ -55,7 +59,7 @@ docker compose logs
 ## Comfortable development
 
 ```bash
-git clone --depth 1 https://github.com/poliath/nestjs-poliath-boilerplate.git my-app
+git clone --depth 1 https://github.com/CHANDARA-code/nest-js-heroku.git my-app
 cd my-app/
 cp env-example .env
 ```
@@ -139,5 +143,7 @@ docker compose -f docker-compose.ci.yaml --env-file env-example -p ci up --build
 ```bash
 docker run --rm jordi/ab -n 100 -c 100 -T application/json -H "Authorization: Bearer USER_TOKEN" -v 2 http://<server_ip>:3000/api/v1/users
 ```
+
 ## Detailed documentation
-[Full documentation](https://github.com/poliath/nestjs-poliath-boilerplate/blob/master/docs/readme.md)
+
+[Full documentation](https://github.com/CHANDARA-code/nest-js-heroku/blob/main/docs/readme.md)
