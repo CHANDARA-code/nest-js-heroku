@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { OAuth2Client } from 'google-auth-library';
 import { AuthGoogleLoginDto } from './dto/auth-google-login.dto';
-import { AllConfigType } from 'src/config/config.type';
+import { AllConfigType } from '@config/config.type';
 import { SocialInterface } from 'src/core/dto/social/interfaces/social.interface';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { rateLimitMiddleware } from './rate-limit.middleware';
-import { LIMIT_DURATION, LIMIT_REQUEST } from 'src/utils/constants';
+import { LIMIT_DURATION, LIMIT_REQUEST } from '@utils/constants';
 export class RateLimitConfig {
   static applyRateLimit(consumer: MiddlewareConsumer) {
     consumer

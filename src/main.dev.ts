@@ -3,14 +3,15 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
-import validationOptions from './utils/validation-options';
-import { AllConfigType } from './config/config.type';
+import { AllConfigType } from '@config/config.type';
 import { WinstonModule } from 'nest-winston';
 import { format, transports } from 'winston';
 import 'winston-daily-rotate-file';
 import helmet from 'helmet';
 import { AppExceptionFilter } from './core/exception/app-exception/app-exception-filter';
 import { AppModuleDev } from './app.module.dev';
+import 'module-alias/register';
+import validationOptions from '@utils/validation-options';
 
 async function bootstrap() {
   console.log(`

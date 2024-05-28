@@ -13,11 +13,11 @@ import {
   OneToMany,
 } from 'typeorm';
 import bcrypt from 'bcryptjs';
-import { EntityHelper } from 'src/utils/entity-helper';
+import { EntityHelper } from '@utils/entity-helper';
 import { Exclude, Expose } from 'class-transformer';
-import { AuthProvidersEnum } from 'src/api/auth/auth-providers.enum';
-import { FileEntity } from 'src/api/files/entities/file.entity';
-import { Article } from 'src/api/articles/entities/article.entity';
+import { AuthProvidersEnum } from '@api/auth/auth-providers.enum';
+import { FileEntity } from '@api/files/entities/file.entity';
+import { Article } from '@api/articles/entities/article.entity';
 import { Role } from 'src/core/roles/entities/role.entity';
 import { Status } from 'src/core/dto/statuses/entities/status.entity';
 
