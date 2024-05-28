@@ -12,11 +12,19 @@ import helmetConfig from '@config/helmet.config';
 import { logger as AppLogger } from './config/logger.config';
 async function bootstrap() {
   Logger.warn(`
-  Running in Production mode: 
-  Server: http://localhost:3000/
-  Document: http://localhost:3000/docs
-  Database Viewer: http://localhost:8080
-  Mail Viewer: http://localhost:1080
+
+  🍀🍀🍀✨✨✨ Running in Production mode ✨✨✨🍀🍀🍀
+
+            Server: http://localhost:3000/
+
+            Document: http://localhost:3000/docs
+
+            Database Viewer: http://localhost:8080
+
+            Mail Viewer: http://localhost:1080
+
+  🍀🍀🍀✨✨✨ Running in Development mode ✨✨✨🍀🍀🍀
+
   `);
   const app = await NestFactory.create(AppModule, {
     cors: true,
