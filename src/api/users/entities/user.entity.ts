@@ -18,8 +18,8 @@ import { Exclude, Expose } from 'class-transformer';
 import { AuthProvidersEnum } from '@api/auth/auth-providers.enum';
 import { FileEntity } from '@api/files/entities/file.entity';
 import { Article } from '@api/articles/entities/article.entity';
-import { Role } from 'src/core/roles/entities/role.entity';
-import { Status } from 'src/core/dto/statuses/entities/status.entity';
+import { Role } from '@core/roles/entities/role.entity';
+import { Status } from '@core/dto/statuses/entities/status.entity';
 
 @Entity()
 export class User extends EntityHelper {

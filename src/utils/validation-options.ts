@@ -1,5 +1,5 @@
 import { HttpStatus, ValidationError, ValidationPipeOptions } from '@nestjs/common';
-import { AppException } from 'src/core/exception/app-exception/app-exception';
+import { AppException } from '@core/exception/app-exception/app-exception';
 
 const validationOptions: ValidationPipeOptions = {
   transform: true,

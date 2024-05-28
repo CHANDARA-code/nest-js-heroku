@@ -7,7 +7,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { MailService } from '@api/mail/mail.service';
 import { NullableType } from '@utils/types/nullable.type';
-import { AppException } from 'src/core/exception/app-exception/app-exception';
+import { AppException } from '@core/exception/app-exception/app-exception';
 
 @Injectable()
 export class UsersService {

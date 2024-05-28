@@ -1,4 +1,4 @@
-import { ClassSerializerInterceptor, ValidationPipe, VersioningType } from '@nestjs/common';
+import { ClassSerializerInterceptor, Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -6,14 +6,13 @@ import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
 import validationOptions from '@utils/validation-options';
 import { AllConfigType } from '@config/config.type';
-import { WinstonModule } from 'nest-winston';
+import { WinstonModule, utilities as nestWinstonModuleUtilities } from 'nest-winston';
 import { format, transports } from 'winston';
 import 'winston-daily-rotate-file';
 import helmet from 'helmet';
-import { AppExceptionFilter } from './core/exception/app-exception/app-exception-filter';
-import 'module-alias/register';
+import { AppExceptionFilter } from '@core/exception/app-exception/app-exception-filter';
 async function bootstrap() {
-  console.log(`
+  Logger.warn(`
   Running in Production mode: 
   Server: http://localhost:3000/
   Document: http://localhost:3000/docs
@@ -25,6 +24,17 @@ async function bootstrap() {
     snapshot: true,
     logger: WinstonModule.createLogger({
       transports: [
+        new transports.Console({
+          format: format.combine(
+            format.timestamp(),
+            format.ms(),
+            nestWinstonModuleUtilities.format.nestLike('MyApp', {
+              colors: true,
+              prettyPrint: true,
+              processId: true,
+            }),
+          ),
+        }),
         new transports.DailyRotateFile({
           filename: `logs/%DATE%-error.log`,
           level: 'error',
