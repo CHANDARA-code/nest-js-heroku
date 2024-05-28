@@ -1,4 +1,4 @@
-import { AppException } from 'src/utils/exception/app-exception/app-exception';
+import { AppException } from 'src/core/exception/app-exception/app-exception';
 import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
 
 export class AddIsRequireTokenToFile1715757835916 implements MigrationInterface {
