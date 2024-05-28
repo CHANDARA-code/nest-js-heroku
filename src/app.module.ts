@@ -30,6 +30,8 @@ import { MailModule } from './api/mail/mail.module';
 import { MailerModule } from './core/mailer/mailer.module';
 import { UsersModule } from './api/users/users.module';
 import { SessionModule } from './api/session/session.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { AssetsEnum } from './utils/constants';
 
 @Module({
   imports: [
@@ -48,6 +50,9 @@ import { SessionModule } from './api/session/session.module';
       ],
       envFilePath: ['.env'],
     }),
+    ServeStaticModule.forRoot({
+      rootPath: path.join(__dirname, AssetsEnum.public),
+    }),
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
       dataSourceFactory: async (options: DataSourceOptions) => {
@@ -60,7 +65,7 @@ import { SessionModule } from './api/session/session.module';
           infer: true,
         }),
         loaderOptions: {
-          path: path.join(__dirname, '/i18n/'),
+          path: path.join(__dirname, AssetsEnum.i18n),
           watch: true,
         },
       }),
