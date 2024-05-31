@@ -30,6 +30,8 @@ import { UsersModule } from './api/users/users.module';
 import { SessionModule } from './api/session/session.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { AssetsEnum } from '@utils/constants';
+import firebaseConfig from './config/firebase.config';
+import { FirebaseAdminModule } from './api/firebase-admin/firebase-admin.module';
 
 export const loadEnv = ConfigModule.forRoot({
   isGlobal: true,
@@ -43,23 +45,9 @@ export const loadEnv = ConfigModule.forRoot({
     googleConfig,
     twitterConfig,
     appleConfig,
+    firebaseConfig,
   ],
   envFilePath: ['.env'],
-});
-export const loadEnvDev = ConfigModule.forRoot({
-  isGlobal: true,
-  load: [
-    databaseConfig,
-    authConfig,
-    appConfig,
-    mailConfig,
-    fileConfig,
-    facebookConfig,
-    googleConfig,
-    twitterConfig,
-    appleConfig,
-  ],
-  envFilePath: ['.env.dev'],
 });
 
 export const loadPublicDirector = ServeStaticModule.forRoot({
@@ -113,4 +101,5 @@ export const loadAllModules = [
   MailerModule,
   HomeModule,
   ArticlesModule,
+  FirebaseAdminModule,
 ];

@@ -167,7 +167,7 @@ export class AppExceptionFilter implements ExceptionFilter {
             technicalMessage = (exception.getResponse() as any)?.message;
             statusCode = exception.getStatus();
           } else {
-            message = 'Internal Server Error';
+            message = 'Something Weng Wrong';
             technicalMessage = exception.message;
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
           }

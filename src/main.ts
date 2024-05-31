@@ -11,21 +11,6 @@ import { AppExceptionFilter } from '@core/exception/app-exception/app-exception-
 import helmetConfig from '@config/helmet.config';
 import { logger as AppLogger } from './config/logger.config';
 async function bootstrap() {
-  Logger.warn(`
-
-  🍀🍀🍀✨✨✨ Running in Production mode ✨✨✨🍀🍀🍀
-
-            Server: http://localhost:3000/
-
-            Document: http://localhost:3000/docs
-
-            Database Viewer: http://localhost:8080
-
-            Mail Viewer: http://localhost:1080
-
-  🍀🍀🍀✨✨✨ Running in Development mode ✨✨✨🍀🍀🍀
-
-  `);
   const app = await NestFactory.create(AppModule, {
     cors: true,
     snapshot: true,
@@ -49,5 +34,21 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
   app.use(helmet(helmetConfig));
   await app.listen(configService.getOrThrow('app.port', { infer: true }));
+
+  Logger.warn(`
+
+  🍀🍀🍀✨✨✨ Running in Production mode ✨✨✨🍀🍀🍀
+
+            Server: http://localhost:3000/
+
+            Document: http://localhost:3000/docs
+
+            Database Viewer: http://localhost:8080
+
+            Mail Viewer: http://localhost:1080
+
+  🍀🍀🍀✨✨✨ Running in Development mode ✨✨✨🍀🍀🍀
+
+  `);
 }
 void bootstrap();
