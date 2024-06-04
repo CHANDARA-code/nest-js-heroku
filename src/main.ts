@@ -1,56 +1,20 @@
-import { ClassSerializerInterceptor, ValidationPipe, VersioningType } from '@nestjs/common';
+import { ClassSerializerInterceptor, Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
-import validationOptions from './utils/validation-options';
-import { AllConfigType } from './config/config.type';
-import { WinstonModule } from 'nest-winston';
-import { format, transports } from 'winston';
-import 'winston-daily-rotate-file';
+import validationOptions from '@utils/validation-options';
+import { AllConfigType } from '@config/config.type';
 import helmet from 'helmet';
-import { AppExceptionFilter } from './core/exception/app-exception/app-exception-filter';
-
+import { AppExceptionFilter } from '@core/exception/app-exception/app-exception-filter';
+import helmetConfig from '@config/helmet.config';
+import { logger as AppLogger } from './config/logger.config';
 async function bootstrap() {
-  console.log(`
-  Running in Production mode: 
-  Server: localhost:3000
-  Document: localhost:3000/docs
-  Database Viewer: localhost:8080
-  `);
   const app = await NestFactory.create(AppModule, {
     cors: true,
     snapshot: true,
-    logger: WinstonModule.createLogger({
-      transports: [
-        new transports.DailyRotateFile({
-          filename: `logs/%DATE%-error.log`,
-          level: 'error',
-          format: format.combine(format.timestamp(), format.json()),
-          datePattern: 'YYYY-MM-DD',
-          zippedArchive: false,
-          maxFiles: '30d', // keep logs for 30 days
-        }),
-        new transports.DailyRotateFile({
-          filename: `logs/%DATE%-combined.log`,
-          format: format.combine(format.timestamp(), format.json()),
-          datePattern: 'YYYY-MM-DD',
-          zippedArchive: false,
-          maxFiles: '30d', // keep logs for 30 days
-        }),
-        new transports.Console({
-          format: format.combine(
-            format.cli(),
-            format.splat(),
-            format.timestamp(),
-            format.printf(info => {
-              return `${info.timestamp} ${info.level}: ${info.message}`;
-            }),
-          ),
-        }),
-      ],
-    }),
+    logger: AppLogger,
   });
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const configService = app.get(ConfigService<AllConfigType>);
@@ -68,7 +32,23 @@ async function bootstrap() {
   const options = new DocumentBuilder().setTitle('API').setDescription('API docs').setVersion('1.0').addBearerAuth().build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
-  app.use(helmet());
+  app.use(helmet(helmetConfig));
   await app.listen(configService.getOrThrow('app.port', { infer: true }));
+
+  Logger.warn(`
+
+  🍀🍀🍀✨✨✨ Running in Production mode ✨✨✨🍀🍀🍀
+
+            Server: http://localhost:3000/
+
+            Document: http://localhost:3000/docs
+
+            Database Viewer: http://localhost:8080
+
+            Mail Viewer: http://localhost:1080
+
+  🍀🍀🍀✨✨✨ Running in Development mode ✨✨✨🍀🍀🍀
+
+  `);
 }
 void bootstrap();

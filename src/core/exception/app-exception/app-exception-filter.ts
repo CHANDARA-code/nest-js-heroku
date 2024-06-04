@@ -27,7 +27,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { AppException } from './app-exception';
-import { ApiResponseService } from 'src/core/api-response-service/api-reponse-service';
+import { ApiResponseService } from '@core/api-response-service/api-reponse-service';
 
 @Catch()
 export class AppExceptionFilter implements ExceptionFilter {
@@ -167,7 +167,7 @@ export class AppExceptionFilter implements ExceptionFilter {
             technicalMessage = (exception.getResponse() as any)?.message;
             statusCode = exception.getStatus();
           } else {
-            message = 'Internal Server Error';
+            message = 'Something Weng Wrong';
             technicalMessage = exception.message;
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
           }

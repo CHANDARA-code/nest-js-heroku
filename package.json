@@ -11,6 +11,7 @@
     "migration:create": "npm run typeorm -- migration:create",
     "migration:run": "npm run typeorm -- --dataSource=src/database/data-source.ts migration:run",
     "migration:revert": "npm run typeorm -- --dataSource=src/database/data-source.ts migration:revert",
+    "schema:sync": "npm run typeorm -- --dataSource=src/database/data-source.ts schema:sync #using development only",
     "schema:drop": "npm run typeorm -- --dataSource=src/database/data-source.ts schema:drop",
     "seed:create": "hygen seeds create",
     "seed:run": "ts-node -r tsconfig-paths/register ./src/database/seeds/run-seed.ts",
@@ -19,6 +20,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
+    "start:dev:test": "nodemon --watch 'src/**/*.ts' --exec 'ts-node -r tsconfig-paths/register' src/main.dev.ts",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs}/**/*.ts\"",
@@ -38,6 +40,7 @@
     "@nestjs/jwt": "10.2.0",
     "@nestjs/passport": "10.0.3",
     "@nestjs/platform-express": "10.3.8",
+    "@nestjs/serve-static": "^4.0.2",
     "@nestjs/swagger": "7.3.1",
     "@nestjs/typeorm": "10.0.2",
     "@types/multer-s3": "3.0.3",
@@ -47,10 +50,12 @@
     "class-validator": "0.14.1",
     "express-rate-limit": "^7.2.0",
     "fb": "2.0.0",
+    "firebase-admin": "^12.1.1",
     "google-auth-library": "9.10.0",
     "handlebars": "4.7.8",
     "helmet": "^7.1.0",
     "lorem-ipsum": "^2.0.8",
+    "module-alias": "^2.2.3",
     "ms": "2.1.3",
     "multer": "1.4.5-lts.1",
     "multer-s3": "3.0.1",
@@ -97,6 +102,7 @@
     "hygen": "6.2.11",
     "is-ci": "3.0.1",
     "jest": "29.6.2",
+    "nodemon": "^3.1.1",
     "prettier": "3.0.1",
     "supertest": "6.3.3",
     "ts-jest": "29.1.1",
@@ -123,7 +129,16 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
+  "_moduleAliases": {
+    "@": "./dist",
+    "@api": "./dist/api",
+    "@assets": "./dist/assets",
+    "@config/*": "./dist/config",
+    "@core/*": "./dist/core",
+    "@database/*": "./dist/database",
+    "@utils/*": "./dist/utils"
+  },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=16.0.0 < 21.0.0"
   }
 }

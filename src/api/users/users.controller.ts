@@ -19,14 +19,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { User } from './entities/user.entity';
-import { StandardPaginationResultType } from 'src/utils/types/standard-pagination-result.type';
-import { standardPagination } from 'src/utils/standard-pagination';
-import { NullableType } from 'src/utils/types/nullable.type';
-import { RoleEnum } from 'src/core/roles/roles.enum';
-import { RolesGuard } from 'src/core/roles/roles.guard';
-import { Roles } from 'src/core/decorators/roles/roles.decorator';
-import { AppJwtAuthGuard } from 'src/core/auth/jwt-auth-guard';
-import { AppException } from 'src/core/exception/app-exception/app-exception';
+import { StandardPaginationResultType } from '@utils/types/standard-pagination-result.type';
+import { standardPagination } from '@utils/standard-pagination';
+import { NullableType } from '@utils/types/nullable.type';
+import { RoleEnum } from '@core/roles/roles.enum';
+import { RolesGuard } from '@core/roles/roles.guard';
+import { Roles } from '@core/decorators/roles/roles.decorator';
+import { AppJwtAuthGuard } from '@core/auth/jwt-auth-guard';
+import { AppException } from '@core/exception/app-exception/app-exception';
 
 @ApiBearerAuth()
 @Roles(RoleEnum.admin)

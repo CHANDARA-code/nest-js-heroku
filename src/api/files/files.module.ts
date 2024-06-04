@@ -9,7 +9,7 @@ import multerS3 from 'multer-s3';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FileEntity } from './entities/file.entity';
 import { FilesService } from './files.service';
-import { AllConfigType } from 'src/config/config.type';
+import { AllConfigType } from '@config/config.type';
 
 @Module({
   imports: [

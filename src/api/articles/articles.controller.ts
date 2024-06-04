@@ -4,10 +4,10 @@ import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { RoleEnum } from 'src/core/roles/roles.enum';
-import { Roles } from 'src/core/decorators/roles/roles.decorator';
-import { RolesGuard } from 'src/core/roles/roles.guard';
-import { AppJwtAuthGuard } from 'src/core/auth/jwt-auth-guard';
+import { RoleEnum } from '@core/roles/roles.enum';
+import { Roles } from '@core/decorators/roles/roles.decorator';
+import { RolesGuard } from '@core/roles/roles.guard';
+import { AppJwtAuthGuard } from '@core/auth/jwt-auth-guard';
 
 @Controller({
   path: 'articles',

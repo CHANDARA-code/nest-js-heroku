@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EntityCondition } from 'src/utils/types/entity-condition.type';
-import { IPaginationOptions } from 'src/utils/types/pagination-options';
+import { EntityCondition } from '@utils/types/entity-condition.type';
+import { IPaginationOptions } from '@utils/types/pagination-options';
 import { DeepPartial, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
-import { MailService } from 'src/api/mail/mail.service';
-import { NullableType } from 'src/utils/types/nullable.type';
-import { AppException } from 'src/core/exception/app-exception/app-exception';
+import { MailService } from '@api/mail/mail.service';
+import { NullableType } from '@utils/types/nullable.type';
+import { AppException } from '@core/exception/app-exception/app-exception';
 
 @Injectable()
 export class UsersService {
