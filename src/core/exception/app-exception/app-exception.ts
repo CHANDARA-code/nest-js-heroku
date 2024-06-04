@@ -39,7 +39,7 @@ export class AppException extends AppError {
       case error instanceof HttpException:
         return this.fromHttpException(error, message);
       default:
-        return new AppException('Internal Server Error', error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new AppException('Something Went Wrong', error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

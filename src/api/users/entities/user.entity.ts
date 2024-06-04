@@ -36,6 +36,10 @@ export class User extends EntityHelper {
   @Exclude({ toPlainOnly: true })
   password: string;
 
+  @Column({ nullable: true })
+  @Exclude({ toPlainOnly: true })
+  fcmToken?: string;
+
   @Exclude({ toPlainOnly: true })
   public previousPassword: string;
 
