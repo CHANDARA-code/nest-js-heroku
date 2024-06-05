@@ -7,5 +7,6 @@
       { "include": "/assets/i18n/**/*", "watchAssets": true },
       { "include": "/assets/public/**/*", "watchAssets": true }
     ]
-  }
+  },
+  "tsConfigPath": "tsconfig.json"
 }

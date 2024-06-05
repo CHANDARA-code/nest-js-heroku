@@ -1,15 +1,15 @@
+import { AppModule } from '@/app.module';
+import { helmetConfig, logger as AppLogger } from '@/config';
+import { AllConfigType } from '@/config/config.type';
+import { AppExceptionFilter } from '@/core';
+import validationOptions from '@/utils/validation-options';
 import { ClassSerializerInterceptor, Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
-import { AppModule } from './app.module';
-import validationOptions from '@utils/validation-options';
-import { AllConfigType } from '@config/config.type';
 import helmet from 'helmet';
-import { AppExceptionFilter } from '@core/exception/app-exception/app-exception-filter';
-import helmetConfig from '@config/helmet.config';
-import { logger as AppLogger } from './config/logger.config';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: true,
