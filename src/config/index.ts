@@ -9,6 +9,7 @@ import googleConfig from '@/config/google.config';
 import helmetConfig from '@/config/helmet.config';
 import { logger } from '@/config/logger.config';
 import mailConfig from '@/config/mail.config';
+import telegramConfig from '@/config/telegram.config';
 import twitterConfig from '@/config/twitter.config';
 export {
   databaseConfig,
@@ -23,4 +24,5 @@ export {
   twitterConfig,
   helmetConfig,
   logger,
+  telegramConfig,
 };

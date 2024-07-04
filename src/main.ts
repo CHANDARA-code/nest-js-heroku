@@ -3,7 +3,7 @@ import { helmetConfig, logger as AppLogger } from '@/config';
 import { AllConfigType } from '@/config/config.type';
 import { AppExceptionFilter } from '@/core';
 import validationOptions from '@/utils/validation-options';
-import { ClassSerializerInterceptor, Logger, ValidationPipe, VersioningType } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -35,7 +35,7 @@ async function bootstrap() {
   app.use(helmet(helmetConfig));
   await app.listen(configService.getOrThrow('app.port', { infer: true }));
 
-  Logger.warn(`
+  console.warn(`
 
   🍀🍀🍀✨✨✨ Running in Production mode ✨✨✨🍀🍀🍀
 

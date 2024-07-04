@@ -79,6 +79,10 @@ export type FirebaseConfig = {
   serviceAccount?: string;
 };
 
+export type TelegramConfig = {
+  token?: string;
+};
+
 export type AllConfigType = {
   app: AppConfig;
   apple: AppleConfig;
@@ -90,4 +94,5 @@ export type AllConfigType = {
   mail: MailConfig;
   twitter: TwitterConfig;
   firebase: FirebaseConfig;
+  telegram: TelegramConfig;
 };

@@ -14,6 +14,7 @@ import {
   ArticlesModule,
   FirebaseAdminModule,
 } from '@/api';
+import { TelegramModule } from '@/api/telegram/telegram.module';
 import {
   databaseConfig,
   appConfig,
@@ -25,6 +26,7 @@ import {
   googleConfig,
   mailConfig,
   twitterConfig,
+  telegramConfig,
 } from '@/config';
 import { AllConfigType } from '@/config/config.type';
 import { TypeOrmConfigService } from '@/database/typeorm-config.service';
@@ -49,6 +51,7 @@ export const loadEnv = ConfigModule.forRoot({
     twitterConfig,
     appleConfig,
     firebaseConfig,
+    telegramConfig,
   ],
   envFilePath: ['.env'],
 });
@@ -105,4 +108,5 @@ export const loadAllModules = [
   HomeModule,
   ArticlesModule,
   FirebaseAdminModule,
+  TelegramModule,
 ];
